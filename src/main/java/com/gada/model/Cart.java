@@ -20,6 +20,8 @@ public class Cart {
     @Column(name = "qty")
     private Integer qty;
 
+    @Column(name = "staus")
+    private String status;
     @Column(name = "created_at")
     private Timestamp createdAt;
 

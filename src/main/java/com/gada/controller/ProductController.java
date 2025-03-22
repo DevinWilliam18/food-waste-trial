@@ -15,9 +15,10 @@ public class ProductController {
 
     }
 
-    @GetMapping("/")
+    @GetMapping("/show")
     private String showPage(Model model){
 
     }
+
 
 }
