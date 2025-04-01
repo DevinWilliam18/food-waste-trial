@@ -2,11 +2,9 @@ package com.gada.controller;
 
 
 import com.gada.model.Product;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,20 +12,25 @@ import java.util.List;
 @RequestMapping("/product")
 public class ProductController {
 
-    @PostMapping("/add")
-    private String addView(@RequestParam){
+    private String PRODUCT_MAIN_PAGE = "templates/buyer/food_page.html";
 
-    }
 
     @GetMapping("/show")
     private String showPage(Model model){
-        model.addAttribute();
-
+        model.addAttribute("","");
         return "";
     }
 
+    @GetMapping("/show-detail")
+    private String detail(@RequestParam String id){
+
+        // call a service class to rediect user to the detail page (stored the response into string variable)
+
+
+    }
+
     @GetMapping("/search")
-    private String search(){
+    private ResponseEntity<Product> search(@RequestParam){
 
     }
 
@@ -36,7 +39,5 @@ public class ProductController {
 
         return foods;
     }
-
-
 
 }

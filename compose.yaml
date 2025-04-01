@@ -1,6 +1,6 @@
 services:
   db:
-    image: postgres
+    image: postgres:15.12-alpine
     restart: always
 
     volumes:
@@ -11,8 +11,8 @@ services:
       - POSTGRES_USER=appv01
       - POSTGRES_PASSWORD=yakuza_1234
 
-    expose:
-      - 5432
+    ports:
+      - "5432:5432"
 
 volumes:
     db-data:
