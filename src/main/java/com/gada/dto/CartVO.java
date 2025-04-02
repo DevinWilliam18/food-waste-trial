@@ -1,5 +1,6 @@
 package com.gada.dto;
 
+import com.gada.model.UserProfile;
 import lombok.Data;
 
 import java.util.List;
@@ -11,6 +12,8 @@ public class CartVO {
     private int qty;
 
     private String status;
+
+    private UserProfile user;
 
     private List<ProductVO> products;
 

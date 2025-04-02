@@ -7,13 +7,16 @@ import com.gada.dto.CartVO;
 import com.gada.dto.ProductVO;
 import com.gada.model.Cart;
 import com.gada.model.Product;
+import com.gada.model.UserProfile;
 import com.gada.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class CartServiceImpl implements CartService {
@@ -40,12 +43,15 @@ public class CartServiceImpl implements CartService {
         //check the existing session
         CartVO sessionCart = createOrUpdateCart(request);
 
+        //get the selected food by id
+        Product product = productDao.getById(id);
+
         if (sessionCart == null){
-//          sessionCart
-//      sess
+          sessionCart.setQty(product.getQty());
+          sessionCart.setStatus("Draft");
+          sessionCart.setProducts(List.of(converToProductVO(product)));
+
         }else{
-            //get the selected food by id
-            Product product = productDao.getById(id);
 
             //update the food list within cart
             List<ProductVO> productList = sessionCart.getProducts();
@@ -54,7 +60,6 @@ public class CartServiceImpl implements CartService {
 
 
         Cart cart = converToCart(sessionCart);
-
         cartDao.save(cart);
 
         request.getSession().setAttribute("cart", sessionCart);
@@ -63,7 +68,15 @@ public class CartServiceImpl implements CartService {
 
     public Cart converToCart(CartVO vo){
         Cart cart = new Cart();
-        //
+        if (vo.getId() != null){
+            cart.setId(vo.getId());
+        }
+
+        cart.setQty(vo.getQty());
+        cart.setUser(vo.getUser());
+        cart.setStatus(vo.getStatus());
+
+//        cart.setFoods();
 
         return cart;
     }
