@@ -7,6 +7,57 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Main</title>
+    <style>
+        .input-group-text-custom {
+            /*display: -webkit-box;*/
+            /*display: -ms-flexbox;*/
+            display: flex;
+            -webkit-box-align: center;
+            /*-ms-flex-align: center;*/
+            align-items: center;
+            padding: .375rem .75rem;
+            margin-bottom: 0;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+            text-align: center;
+            white-space: nowrap;
+            border-radius: .25rem;
+        }
+
+        /* Sidebar styles */
+        .sidebar-popup {
+            position: fixed;
+            top: 0;
+            left: -250px; /* Hidden by default */
+            width: 250px;
+            height: 100%;
+            background-color: #f8f9fa;
+            transition: left 0.3s ease; /* Smooth slide-in */
+            z-index: 1000; /* Above other content */
+        }
+        .sidebar-popup.open {
+            left: 0; /* Visible when open */
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none; /* Hidden by default */
+            z-index: 999; /* Below sidebar */
+        }
+        .icon-link {
+            display: inline-block;
+            padding: 0;
+            margin: 0;
+            line-height: 0;
+        }
+
+    </style>
 </head>
 <body>
 <div class="root">
@@ -14,20 +65,20 @@
     <!-- Navbar-->
     <!-- Image and text -->
     <nav class="navbar navbar-light">
-        <form class="form-inline">
+        <form class="form-inline" style="background-color: #F0EFFF; border-radius: 20px">
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="list-menu">
+                    <span class="input-group-text-custom" id="list-menu">
                         <a href="#" class="d-inline-block p-0 m-0 lh-0">
-                            <img class="d-block" src="/static/list_menu.ico" width="20" height="20" alt="">
+                            <img class="d-block" src="/static/list_menu.ico" width="15" height="15" alt="">
                         </a>
                     </span>
                 </div>
-                <input type="text" class="form-control" placeholder="Search" aria-label="Username" aria-describedby="basic-addon1">
+                <input type="text" class="form-control" style="background-color: #F0EFFF; border: 0; font-size: .75rem; " placeholder="Search" aria-label="Username" aria-describedby="basic-addon1">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="search-icon">
+                    <span class="input-group-text-custom" id="search-icon">
                         <a href="#" class="d-inline-block p-0 m-0 lh-0">
-                            <img class="d-block" src="/static/search_icon.ico" width="20" height="20" alt="">
+                            <img class="d-block" src="/static/search_icon.ico" width="15" height="15" alt="">
                         </a>
                     </span>
                 </div>
@@ -39,9 +90,31 @@
     </nav>
     <!-- Sidebar-->
     <div class="sidebar">
+        <!-- Sidebar Popup -->
+        <div id="sidebarPopup" class="sidebar-popup">
+            <div class="p-3">
+                <h5>Sidebar Menu</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a th:href="@{/home}" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a th:href="@{/dashboard}" class="nav-link">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a th:href="@{/settings}" class="nav-link">Settings</a>
+                    </li>
+                </ul>
+                <button class="btn btn-secondary mt-3" id="closeSidebar">Close</button>
+            </div>
+        </div>
 
-
+        <!-- Overlay to close sidebar -->
+        <div id="overlay" class="overlay"></div>
     </div>
+
+    <!-- Overlay to close sidebar -->
+    <div id="overlay" class="overlay"></div>
 
     <div class="main-content">
 
@@ -49,4 +122,7 @@
 
 </div>
 </body>
+<!--jquery via cdn-->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="/static/js/header.js"/>
 </html>
