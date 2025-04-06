@@ -8,6 +8,31 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Main</title>
     <style>
+
+        .main{
+            min-height: 100vh;
+            width: 100%;
+            overflow: hidden;
+            transition: all 0.35s ease-in-out;
+            background-color: #f9f9f9;
+            margin-left: 0;
+        }
+
+        .sidebar {
+            max-width: 264px;
+            min-width: 264px;
+            transition: all 0.35s ease-in-out;
+            background-color: #000;
+            display: flex;
+            flex-direction: column;
+            position: absolute; /* Keep it from pushing .main naturally */
+        }
+
+        .sidebar.collapsed {
+            margin-left: -264px;
+        }
+
+
         .input-group-text-custom {
             /*display: -webkit-box;*/
             /*display: -ms-flexbox;*/
@@ -62,32 +87,6 @@
 <body>
 <div class="root">
 
-    <!-- Navbar-->
-    <!-- Image and text -->
-    <nav class="navbar navbar-light">
-        <form class="form-inline" style="background-color: #F0EFFF; border-radius: 20px">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text-custom" id="list-menu">
-                        <a href="#" class="d-inline-block p-0 m-0 lh-0">
-                            <img class="d-block" src="/static/list_menu.ico" width="15" height="15" alt="">
-                        </a>
-                    </span>
-                </div>
-                <input type="text" class="form-control" style="background-color: #F0EFFF; border: 0; font-size: .75rem; " placeholder="Search" aria-label="Username" aria-describedby="basic-addon1">
-                <div class="input-group-prepend">
-                    <span class="input-group-text-custom" id="search-icon">
-                        <a href="#" class="d-inline-block p-0 m-0 lh-0">
-                            <img class="d-block" src="/static/search_icon.ico" width="15" height="15" alt="">
-                        </a>
-                    </span>
-                </div>
-            </div>
-        </form>
-        <a href="#">
-            <img src="/static/profile.ico" width="20" height="20" class="d-inline-block align-top" alt="">
-        </a>
-    </nav>
     <!-- Sidebar-->
     <div class="sidebar">
         <!-- Sidebar Popup -->
@@ -110,14 +109,43 @@
         </div>
 
         <!-- Overlay to close sidebar -->
-        <div id="overlay" class="overlay"></div>
+        <!-- <div id="overlay" class="overlay"></div>-->
     </div>
 
-    <!-- Overlay to close sidebar -->
-    <div id="overlay" class="overlay"></div>
+<!--     Overlay to close sidebar -->
+     <div id="overlay" class="overlay"></div>
 
-    <div class="main-content">
+    <div class="main" id="main">
+        <!-- Navbar-->
+        <!-- Image and text -->
+        <nav class="navbar navbar-light">
+            <form class="form-inline" style="background-color: #F0EFFF; border-radius: 20px">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text-custom" id="list-menu">
+                        <a href="#" class="d-inline-block p-0 m-0 lh-0">
+                            <img class="d-block" src="/static/list_menu.ico" width="15" height="15" alt="">
+                        </a>
+                    </span>
+                    </div>
+                    <input type="text" class="form-control" style="background-color: #F0EFFF; border: 0; font-size: .75rem; " placeholder="Search" aria-label="Username" aria-describedby="basic-addon1">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text-custom" id="search-icon">
+                        <a href="#" class="d-inline-block p-0 m-0 lh-0">
+                            <img class="d-block" src="/static/search_icon.ico" width="15" height="15" alt="">
+                        </a>
+                    </span>
+                    </div>
+                </div>
+            </form>
+            <a href="#">
+                <img src="/static/profile.ico" width="20" height="20" class="d-inline-block align-top" alt="">
+            </a>
+        </nav>
 
+        <div class="main-content">
+
+        </div>
     </div>
 
 </div>
@@ -125,4 +153,6 @@
 <!--jquery via cdn-->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="/static/js/header.js"/>
+<!--Bootstrap-->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </html>
