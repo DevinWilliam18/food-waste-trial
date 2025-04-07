@@ -17,4 +17,10 @@ public class Menu {
     @Column(name = "mnu_name")
     private String name;
 
+    @Column(name = "path_src")
+    private String pathSource;
+
+    @Column(name = "path_url")
+    private String pathUrl;
+
 }
