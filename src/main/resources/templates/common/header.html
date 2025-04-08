@@ -14,7 +14,7 @@
             width: 100%;
             overflow: hidden;
             transition: all 0.35s ease-in-out;
-            background-color: #f9f9f9;
+            background-color: white;
             margin-left: 0;
         }
 
@@ -55,12 +55,13 @@
         .sidebar-popup {
             position: fixed;
             top: 0;
-            left: -250px; /* Hidden by default */
-            width: 250px;
+            left: -264px; /* Hidden by default */
+            width: 264px;
             height: 100%;
             background-color: #f8f9fa;
             transition: left 0.3s ease; /* Smooth slide-in */
             z-index: 1000; /* Above other content */
+            padding: .5rem 1rem;
         }
         .sidebar-popup.open {
             left: 0; /* Visible when open */
@@ -81,7 +82,6 @@
             margin: 0;
             line-height: 0;
         }
-
     </style>
 </head>
 <body>
@@ -90,22 +90,16 @@
     <!-- Sidebar-->
     <div class="sidebar">
         <!-- Sidebar Popup -->
-        <div id="sidebarPopup" class="sidebar-popup">
-            <div class="p-3">
-                <h5>Sidebar Menu</h5>
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a th:href="@{/home}" class="nav-link">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a th:href="@{/dashboard}" class="nav-link">Dashboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a th:href="@{/settings}" class="nav-link">Settings</a>
-                    </li>
-                </ul>
-                <button class="btn btn-secondary mt-3" id="closeSidebar">Close</button>
-            </div>
+        <div id="sidebarPopup" class="sidebar-popup d-flex flex-column flex-shrink-0">
+            <h5>Sidebar Menu</h5>
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li th:each="menu: *{menuList}" class="nav-item">
+                    <a th:href="@{{url}}(url=${student.getPathUrl()})}" class="nav-link" style="color: black">
+                        <img src="@{{urlSrc}}(urlSrc=${student.getPathSource()})}" width="16" height="16">
+                        ${menu.getName()}
+                    </a>
+                </li>
+            </ul>
         </div>
 
         <!-- Overlay to close sidebar -->
@@ -113,7 +107,7 @@
     </div>
 
 <!--     Overlay to close sidebar -->
-     <div id="overlay" class="overlay"></div>
+<!--     <div id="overlay" class="overlay"></div>-->
 
     <div class="main" id="main">
         <!-- Navbar-->

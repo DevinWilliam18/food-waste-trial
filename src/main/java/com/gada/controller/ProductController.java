@@ -26,8 +26,7 @@ public class ProductController {
 
         List<Menu> menuList = menuService.get();
         model.addAttribute("menuList",menuList);
-
-        return "";
+        return PRODUCT_MAIN_PAGE;
     }
 
     @GetMapping("/show-detail")
