@@ -28,7 +28,7 @@ public class CartController {
 
         Map<String, String> response = new HashMap<>();
         try{
-            cartService.addFoodToCart(String id, request);
+            cartService.addFoodToCart(id, request);
             //call service class
 
 
