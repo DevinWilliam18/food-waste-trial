@@ -23,11 +23,11 @@ public class Cart {
     @Column(name = "qty")
     private Integer qty;
 
-    @Column(name = "staus")
+    @Column(name = "status")
     private String status;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "user_id")
     private UserProfile user;
 
     @ManyToMany
@@ -35,7 +35,7 @@ public class Cart {
         joinColumns = @JoinColumn(name = "cart_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id")
     )
-    private Set<Product> foods = new HashSet<>();
+    private Set<Product> foods;
 
     @Column(name = "created_at")
     private Timestamp createdAt;

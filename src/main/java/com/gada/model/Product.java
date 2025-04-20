@@ -2,11 +2,9 @@ package com.gada.model;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Set;
 
 @Data
 @Entity
@@ -28,6 +26,10 @@ public class Product {
 
     @Column(name = "qty")
     private Integer qty;
+
+    @ManyToMany(mappedBy = "foods")
+    private Set<Product> foods;
+
 
     @Column(name = "expired_at")
     private Timestamp expiredAt;
