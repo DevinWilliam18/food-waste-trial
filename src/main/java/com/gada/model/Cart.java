@@ -35,7 +35,7 @@ public class Cart {
         joinColumns = @JoinColumn(name = "cart_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id")
     )
-    private Set<Product> foods;
+    private Set<Product> products = new HashSet<>();
 
     @Column(name = "created_at")
     private Timestamp createdAt;
