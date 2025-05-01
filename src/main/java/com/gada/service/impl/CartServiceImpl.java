@@ -7,16 +7,13 @@ import com.gada.dto.CartVO;
 import com.gada.dto.ProductVO;
 import com.gada.model.Cart;
 import com.gada.model.Product;
-import com.gada.model.UserProfile;
 import com.gada.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class CartServiceImpl implements CartService {

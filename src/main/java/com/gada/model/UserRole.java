@@ -13,6 +13,7 @@ import javax.persistence.Table;
 public class UserRole {
 
     @Id
+    @Column(name = "id")
     private String id;
 
     @Column(name = "role_name")
