@@ -1,0 +1,23 @@
+# Stage 1: Build stage
+FROM maven:3.8.6-openjdk-11 AS builder
+
+WORKDIR /app
+
+# Copy the project files
+COPY pom.xml .
+COPY src ./src
+
+RUN mvn clean package -DskipTests
+
+# Stage 2: Runtime stage
+FROM openjdk:11-jre-slim
+
+# Set working directory
+WORKDIR /app
+
+# Copy the JAR file from the builder stage
+COPY --from=builder /app/target/*.jar /app/
+
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "/app/food-waste-1.0.0.jar"]
