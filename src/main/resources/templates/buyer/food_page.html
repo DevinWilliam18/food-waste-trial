@@ -1,10 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Title</title>
 </head>
-<body>
+<style>
 
+    .main{
+        min-height: 100vh;
+        width: 100%;
+        overflow: hidden;
+        transition: all 0.35s ease-in-out;
+        background-color: white;
+        margin-left: 0;
+    }
+
+    .sidebar {
+        max-width: 264px;
+        min-width: 264px;
+        transition: all 0.35s ease-in-out;
+        background-color: #000;
+        display: flex;
+        flex-direction: column;
+        position: absolute; /* Keep it from pushing .main naturally */
+    }
+
+    .sidebar.collapsed {
+        margin-left: -264px;
+    }
+
+
+    .input-group-text-custom {
+        /*display: -webkit-box;*/
+        /*display: -ms-flexbox;*/
+        display: flex;
+        -webkit-box-align: center;
+        /*-ms-flex-align: center;*/
+        align-items: center;
+        padding: .375rem .75rem;
+        margin-bottom: 0;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        text-align: center;
+        white-space: nowrap;
+        border-radius: .25rem;
+    }
+
+    /* Sidebar styles */
+    .sidebar-popup {
+        position: fixed;
+        top: 0;
+        left: -264px; /* Hidden by default */
+        width: 264px;
+        height: 100%;
+        background-color: #f8f9fa;
+        transition: left 0.3s ease; /* Smooth slide-in */
+        z-index: 1000; /* Above other content */
+        padding: .5rem 1rem;
+    }
+    .sidebar-popup.open {
+        left: 0; /* Visible when open */
+    }
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: none; /* Hidden by default */
+        z-index: 999; /* Below sidebar */
+    }
+    .icon-link {
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+        line-height: 0;
+    }
+</style>
+<body>
+<div class="root" th:insert="~{common/header :: sidebar}">
+    <div class="main" th:insert="~{common/header :: navbar}">
+
+        <div class="main-content">
+            <h5>Test</h5>
+        </div>
+    </div>
+</div>
 </body>
+<!--jquery via cdn-->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="../../static/js/header.js"></script>
+<!--Bootstrap-->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </html>
