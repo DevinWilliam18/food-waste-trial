@@ -16,9 +16,9 @@
             <h5>Sidebar Menu</h5>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li th:each="menu: *{menuList}" class="nav-item">
-                    <a th:href="@{{url}}(url=${student.getPathUrl()})}" class="nav-link" style="color: black">
-                        <img src="@{{urlSrc}}(urlSrc=${student.getPathSource()})}" width="16" height="16">
-                        ${menu.getName()}
+                    <a href="#" class="nav-link" style="color: black" th:inline="text">
+                        <img th:src="@{{urlSrc}(urlSrc=${menu.getPathSource()})}" width="16" height="16">
+                        [[${menu.getName()}]]
                     </a>
                 </li>
             </ul>
@@ -31,13 +31,13 @@
 
     <!-- Navbar-->
     <!-- Image and text -->
-    <nav class="navbar navbar-light" th:fragment = "navbar">
+    <nav class="navbar navbar-light" th:fragment="navbar">
         <form class="form-inline" style="background-color: #F0EFFF; border-radius: 20px">
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text-custom" id="list-menu">
                     <a href="#" class="d-inline-block p-0 m-0 lh-0">
-                        <img class="d-block" src="/static/list_menu.ico" width="15" height="15" alt="">
+                        <img class="d-block" src="/list_menu.ico" width="15" height="15" alt="">
                     </a>
                 </span>
                 </div>
@@ -45,15 +45,21 @@
                 <div class="input-group-prepend">
                 <span class="input-group-text-custom" id="search-icon">
                     <a href="#" class="d-inline-block p-0 m-0 lh-0">
-                        <img class="d-block" src="/static/search_icon.ico" width="15" height="15" alt="">
+                        <img class="d-block" src="/search_icon.ico" width="15" height="15" alt="">
                     </a>
                 </span>
                 </div>
             </div>
         </form>
         <a href="#">
-            <img src="/static/profile.ico" width="20" height="20" class="d-inline-block align-top" alt="">
+            <img src="/profile.ico" width="20" height="20" class="d-inline-block align-top" alt="">
         </a>
     </nav>
 </body>
+<!--jquery via cdn-->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<!--Bootstrap-->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script>
+</script>
 </html>
