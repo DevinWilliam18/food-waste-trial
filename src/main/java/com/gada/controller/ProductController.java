@@ -4,6 +4,7 @@ package com.gada.controller;
 import com.gada.model.Menu;
 import com.gada.model.Product;
 import com.gada.service.MenuService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,20 +13,28 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @RequestMapping("/product")
 @Controller
 public class ProductController {
 
-    private String PRODUCT_MAIN_PAGE = "templates/buyer/food_page.html";
+    private String PRODUCT_MAIN_PAGE = "buyer/food_page";
 
     @Autowired
     private MenuService menuService;
 
     @GetMapping("/")
     private String showPage(Model model){
+        log.info("masuk");
         //authentication
 
         List<Menu> menuList = menuService.get();
+
+        for (Menu menu: menuList) {
+            log.info("name: {}", menu.getName());
+            log.info("source: {}", menu.getPathSource());
+            log.info("\n");
+        }
         model.addAttribute("menuList",menuList);
         return PRODUCT_MAIN_PAGE;
     }
