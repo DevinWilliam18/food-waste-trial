@@ -28,23 +28,28 @@
             <div th:replace="~{common/header :: navbar}"></div>
             <div class="main-content d-flex flex-column" style="margin: 13rem 2rem; min-height: 100vh;">
                 <div class="table-header" style="margin-bottom: 15px;">
-                    <form class="form-inline" style="width: 230px; border-radius: 9px; border-width: 3px; background-color: white; border-color: #ECECEC;">
+                    <form class="form-inline" style="width: 230px; border-radius: 9px; border: 3px solid #ECECEC; background-color: white;">
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text" id="search-table-icon" style="background-color: white;">
+                                <span class="input-group-text" id="search-table-icon" style="background-color: white; border: 0;">
                                     <a href="#" class="d-inline-block p-0 m-0 lh-0">
                                         <img class="d-block" src="/search_icon.ico" width="15" height="15" alt="">
                                     </a>
                                 </span>
                             </div>
-                            <input type="text" class="form-control" style="background-color: white; font-size: .75rem; " placeholder="Search" aria-label="Username" aria-describedby="basic-addon1">
+                            <input type="text" class="form-control" style="background-color: white; font-size: .75rem; border: 0; padding: 0; " placeholder="Search" aria-label="Username" aria-describedby="basic-addon1">
                         </div>
                     </form>
+<!--                    <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker">-->
+<!--                        <input placeholder="Select date" type="text" id="example" class="form-control">-->
+<!--                        <label for="example">Try me...</label>-->
+<!--                        <i class="fas fa-calendar input-prefix" tabindex=0></i>-->
+<!--                    </div>-->
                 </div>
 
                 <div style="width: 100%; height: 100%;">
-                    <table class="table table-sm">
-                        <thead class="thead-dark">
+                    <table class="table table-sm table-striped">
+                        <thead class="thead-light">
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">First</th>
@@ -87,4 +92,7 @@
 <!--Bootstrap-->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script th:src="@{/js/header.js}"></script>
+<script>
+    $('.datepicker').datepicker();
+</script>
 </html>
