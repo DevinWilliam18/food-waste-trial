@@ -1,10 +1,13 @@
 package com.gada.controller;
 
 
+import com.gada.dto.ProductVO;
 import com.gada.model.Menu;
 import com.gada.model.Product;
 import com.gada.service.MenuService;
+import com.gada.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,21 +26,32 @@ public class ProductController {
     @Autowired
     private MenuService menuService;
 
-    @GetMapping("/")
+    @Autowired
+    private ProductService productService;
+
+    @Autowired
+    private ModelMapper modelMapper;
+
+    @GetMapping()
     private String showPage(Model model){
         log.info("masuk");
         //authentication
 
         List<Menu> menuList = menuService.get();
 
+        List<Product> productList = productService.get();
         for (Menu menu: menuList) {
             log.info("name: {}", menu.getName());
             log.info("source: {}", menu.getPathSource());
             log.info("\n");
         }
         model.addAttribute("menuList",menuList);
+        model.addAttribute("products", productList.stream().map(this::convertToProductVO));
+
         return PRODUCT_MAIN_PAGE;
     }
+
+
 
 //    @GetMapping("/show-detail")
 //    private String detail(@RequestParam String id){
@@ -52,10 +66,10 @@ public class ProductController {
 //
 //    }
 
-    private List<Product> getAllFoods(){
-        List<Product> foods = new ArrayList<>();
+    private ProductVO convertToProductVO(Product product){
+        ProductVO productVO = modelMapper.map(product, ProductVO.class);
 
-        return foods;
+        return productVO;
     }
 
 }
